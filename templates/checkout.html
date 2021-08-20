@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+
+{% block title %}Yakunlash | Diamond Ring Store{% endblock %}
+
+{% block body %}
+<div class="row">
+	<div class="col-lg-8">
+		<h3 class="bold">
+			<i class="glyphicon glyphicon-pencil"></i> Yakuniy Xaridor Malumotlari
+		</h3>
+
+		<div class="panel panel-primary">
+            <form method="POST" action="{{ url_for('checkout') }}">
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-lg-12">
+						<h4 class="bold">Shaxsiy Malumotlar</h4>
+					</div>
+                    {{ form.csrf_token }}
+					<div class="col-lg-6">
+						<div class="form-group">
+							<label>Ism</label>
+                            {{ form.first_name(class='form-control', placeholder='Ismingiz') }}
+						</div>
+						<div class="form-group">
+							<label>Familiya</label>
+                            {{ form.last_name(class='form-control', placeholder='Familiyangiz') }}
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="form-group">
+							<label>Telefon Raqam</label>
+                            {{ form.phone_number(class='form-control', placeholder='Telefon raqamingiz') }}
+						</div>
+						<div class="form-group">
+							<label>Email</label>
+                            {{ form.email(class='form-control', placeholder='Elektron Pochtangiz') }}
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-lg-12">
+						<h4 class="bold">To'liq manzil</h4>
+					</div>
+					<div class="col-lg-6">
+						<div class="form-group">
+							<label>Yashash joyi</label>
+                            {{ form.address(class='form-control', placeholder='Mahallangiz') }}
+						</div>
+						<div class="form-group">
+							<label>Shahar yoki Tuman</label>
+                            {{ form.city(class='form-control', placeholder='Shahar yoki tumaningiz') }}
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="form-group">
+							<label>Viloyat</label>
+                            {{ form.region(class='form-control') }}
+						</div>
+						<div class="form-group">
+							<label>Mamlakat</label>
+                            {{ form.country(class='form-control') }}
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-lg-12">
+						<h4 class="bold">To'lov</h4>
+					</div>
+					<div class="col-lg-6">
+						<div class="form-group">
+							<label>To'lov turi</label>
+                            {{ form.payment_type(class='form-control') }}
+						</div>
+					</div>
+					<div class="col-lg-12">
+						<div class="form-group">
+							<div class="checkbox">
+								<label>
+									<input type="checkbox" value="">
+									Xizmat shartlariga roziman.
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel-footer">
+				<button type="submit" class="btn btn-primary btn-sm">
+					Buyurtma berish
+				</button>
+			</div>
+            </form>
+		</div>
+	</div>
+
+	<div class="col-lg-4">
+		<h3 class="bold">
+			<i class="glyphicon glyphicon-th-list"></i> Savat Malumotlari
+		</h3>
+
+		<div class="panel panel-primary">
+			<div class="panel-body">
+				Joriy Savat Qiymati
+			</div>
+			<ul class="list-group">
+				<li class="list-group-item">
+					<p>
+						{{ quantity_total }} dona Mahsulot <strong class="pull-right">&dollar;{{ grand_total / 100 }}</strong>
+					</p>
+					<p>
+						24 soat ichida Yetkazib Berish <strong class="pull-right">&dollar;10</strong>
+					</p>
+				</li>
+				<li class="list-group-item">
+					<p>Jami <strong class="pull-right">&dollar;{{ grand_total_plus_shipping / 100 }}</strong></p>
+					<p>Boshqa To'lovlar <strong class="pull-right">&dollar;0.00</strong></p>
+				</li>
+			</ul>
+		</div>
+
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">Biz bilan Xarid qilishning Afzalliklari</h3>
+			</div>
+			<div class="panel-body">
+				Biz bilan xarid qilish quyidagi afzalliklarni sizga taqdim etadi:
+			</div>
+			<ul class="list-group">
+				<li class="list-group-item">Xaridor huquqlari himoyasi</li>
+				<li class="list-group-item">24 soat ichida yetkazib berish</li>
+				<li class="list-group-item">Siz uchun qulay bo'lgan to'lov turi</li>
+				<li class="list-group-item">Mahsulot yoqmasa 7 kun ichida pulingizni qaytarib berish kafolati</li>
+			</ul>
+		</div>
+	</div>
+</div>
+{% endblock %}
